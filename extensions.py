@@ -21,13 +21,13 @@ class CryptoConverter:
             val_1_ticker = keys[val_1]
         #проверка правильности ввода названия первой валюты список /values
         except KeyError:
-            raise ConvertionException(f'Неправильное название криптовалюты - '
+            raise ConvertionException(f'Неправильное название валюты №1 - '
                                       f'{val_1}')
         try:
              val_2_ticker = keys[val_2]
         #проверка правильности ввода названия второй валюты - список /values
         except KeyError:
-            raise ConvertionException(f'Неправильное название фиата - {val_2}')
+            raise ConvertionException(f'Неправильное название валюты №2 - {val_2}')
 
         try:
             count_val_1 = float(count_val_1)
