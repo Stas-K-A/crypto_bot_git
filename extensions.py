@@ -10,7 +10,7 @@ class CryptoConverter:
     #обработка информации, полученной от бота
     #валютная пара и количество первой валюты в паре 
     @staticmethod
-    def convert(val_1, val_2, count_val_1):
+    def get_price(val_1, val_2, count_val_1):
         
         if val_1 == val_2:
         #проверка валютной пары - конвертация при условии
