@@ -10,36 +10,36 @@ class CryptoConverter:
     #обработка информации, полученной от бота
     #валютная пара и количество первой валюты в паре 
     @staticmethod
-    def get_price(val_1, val_2, count_val_1):
+    def get_price(base, quote, amount):
         
-        if val_1 == val_2:
+        if base == quote:
         #проверка валютной пары - конвертация при условии
         #валюты должны быть указаны разные
-            raise ConvertionException(f'Одинаковые валюты {val_1} - {val_2}')
+            raise ConvertionException(f'Одинаковые валюты {base} - {quote}')
             
         try:
-            val_1_ticker = keys[val_1]
+            base_ticker = keys[base]
         #проверка правильности ввода названия первой валюты список /values
         except KeyError:
             raise ConvertionException(f'Неправильное название валюты №1 - '
-                                      f'{val_1}')
+                                      f'{base}')
         try:
-             val_2_ticker = keys[val_2]
+             quote_ticker = keys[quote]
         #проверка правильности ввода названия второй валюты - список /values
         except KeyError:
-            raise ConvertionException(f'Неправильное название валюты №2 - {val_2}')
+            raise ConvertionException(f'Неправильное название валюты №2 - {quote}')
 
         try:
-            count_val_1 = float(count_val_1)
+            amount = float(amount)
         #проверка правильности ввода количества криптовалюты - числовое значение
         except ValueError:
-            raise ConvertionException(f'Неправильное колличество - {count_val_1}')
+            raise ConvertionException(f'Неправильное количество - {amount}')
         
         #отправка запроса на сайт
         r = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym='
-                         f'{val_1_ticker}&tsyms={val_2_ticker}')
+                         f'{base_ticker}&tsyms={quote_ticker}')
 
         #обработка данных, полученных с сайта
-        price_val_1 = round(json.loads(r.content)[keys[val_2]]*count_val_1, 2)
+        price_base = round(json.loads(r.content)[keys[quote]]*amount, 2)
 
-        return price_val_1
+        return price_base
