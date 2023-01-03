@@ -68,4 +68,4 @@ def convert(message):
         bot.send_message(message.chat.id, text)
 
 
-bot.polling()#запуск бота @Crypto_Trabaja_Bot
+bot.polling(non_stop = True)#запуск бота @Crypto_Trabaja_Bot
