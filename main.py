@@ -45,13 +45,13 @@ def convert(message):
             raise ConvertionException(f'Количество параметров должно быть равно'
                                       f' - 3\n')
 
-        val_1, val_2, count_val_1  = values
+        base, quote, amount  = values
         #преобразование названий валлют в нижний регистр
-        val_1 = val_1.lower()
-        val_2 = val_2.lower()
+        base = base.lower()
+        quote = quote.lower()
         
         #получение обменного курса с помощью метода convert класса CryptoConvert
-        price_val_1 = CryptoConverter.get_price(val_1, val_2, count_val_1)
+        price_base = CryptoConverter.get_price(base, quote, amount)
 
     except ConvertionException as e:
         #вывод сообщений об ошибках ввода в консоль бота
@@ -64,7 +64,7 @@ def convert(message):
     else:
         #вывод обменного курса установленной пользователем валютной пары
         #в консоль бота
-        text = f'Стоимость {count_val_1} {val_1} в {val_2} - {price_val_1}'
+        text = f'Стоимость {amount} {base} в {quote} - {price_base}'
         bot.send_message(message.chat.id, text)
 
 
