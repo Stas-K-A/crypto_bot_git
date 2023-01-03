@@ -51,7 +51,7 @@ def convert(message):
         val_2 = val_2.lower()
         
         #получение обменного курса с помощью метода convert класса CryptoConvert
-        price_val_1 = CryptoConverter.convert(val_1, val_2, count_val_1)
+        price_val_1 = CryptoConverter.get_price(val_1, val_2, count_val_1)
 
     except ConvertionException as e:
         #вывод сообщений об ошибках ввода в консоль бота
